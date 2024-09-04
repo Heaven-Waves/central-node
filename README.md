@@ -6,6 +6,7 @@ Docker and Ansible configuration for the [Raspberry Pi 4B](https://www.raspberry
 <p align="center">
 <img
      alt="Raspberry Pi 4 model B"
-     src="https://raw.githubusercontent.com/Heaven-Waves/assets/main/img/ESP32-LyraT_V4.3.png"
+     src="https://raw.githubusercontent.com/Heaven-Waves/assets/main/img/RaspberryPi-4-model-B.png"
+     width="500"
      >
 </p>
