@@ -1,5 +1,5 @@
 # Central Node 📡
-Docker and ansible configuration for the [Raspberry Pi 4B](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/specifications/) board with 4G RAM as central node. 🍓
+Docker and Ansible configuration for the [Raspberry Pi 4B](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/specifications/) board with 4G RAM as central node. 🍓
 
  ## Raspberry Pi 4 model B
  > You know it well
