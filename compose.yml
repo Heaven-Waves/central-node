@@ -1,0 +1,32 @@
+services:
+  pi-emulator:
+    image: ptrsr/pi-ci
+    entrypoint: []
+    command:
+      - bash
+      - -c
+      - |
+        /app/run.py resize 8G -y
+        /app/run.py start
+    ports:
+      - 2222:2222
+    volumes:
+      - ./dist:/dist
+
+  ansible:
+    image: justivo/ansible
+    command: ansible-playbook playbook.yml
+    depends_on:
+      - pi-emulator
+    volumes:
+      - ./config:/etc/ansible/playbooks/
+      - ./dist:/distro
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.16.1.0/24
+          ip_range: 172.16.1.0/30
+          gateway: 172.16.1.1
