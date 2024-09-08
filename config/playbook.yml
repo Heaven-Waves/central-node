@@ -8,13 +8,75 @@
         timeout: 300
 
   tasks:
-    - name: Print a message
-      ansible.builtin.debug:
-        msg: "This task runs first and before the example role"
+    - name: Add bullseye-backports repository to sources list in order to install pipewire
+      ansible.builtin.apt_repository:
+        repo: "deb http://deb.debian.org/debian bullseye-backports main contrib non-free"
+        filename: "bullseye-backports"
 
-    # - name: Install icecast2
-    #   ansible.builtin.apt:
-    #     name: icecast2
+    - name: Install PipeWire and all its dependancies from bullseye-backports
+      ansible.builtin.apt:
+        name:
+          - pipewire
+          - wireplumber
+          - pipewire-pulse
+          - libspa-0.2-bluetooth
+        default_release: "bullseye-backports"
+        state: present
+
+    - name: Install `python3-dbus` for the custom python script
+      ansible.builtin.apt:
+        name: python3-dbus
+        state: present
+
+    - name: Update apt
+      ansible.builtin.apt:
+        update_cache: true
+        # upgrade:
+
+    - name: Install icecast2
+      ansible.builtin.apt:
+        name: icecast2
+        state: present
+
+    - name: Install Vim
+      ansible.builtin.apt:
+        name: vim
+        state: present
+
+    - name: Change default boot mount point
+      ansible.builtin.shell: sed -iE 's|\s/boot\s| /boot/firmware |g' /etc/fstab
+
+    - name: Create default user
+      ansible.builtin.user:
+        name: demo
+        password: "{{ 'demo' | password_hash }}"
+        groups:
+          - sudo
+        append: true
+
+    - name: Remove autologin
+      ansible.builtin.shell: sed -i 's/--autologin root //' /etc/systemd/system/serial-getty@ttyAMA0.service.d/override.conf
+
+    - name: Remove ssh auto login
+      ansible.builtin.shell:
+        # sed -i 's/PermitRootLogin yes/#PermitRootLogin prohibit-password/' /etc/ssh/sshd_config &&
+        sed -i 's/permitEmptyPasswords yes/#PermitEmptyPasswords no/' /etc/ssh/sshd_config
+
+    - name: Enable getty service for /dev/tty1
+      ansible.builtin.systemd:
+        name: getty@tty1.service
+        enabled: true
+
+    - name: Enable default /dev/tty1 login prompt
+      ansible.builtin.copy:
+        src: /etc/systemd/system/serial-getty@ttyAMA0.service.d/override.conf
+        dest: /etc/systemd/system/getty@tty1.service.d/override.conf
+        remote_src: true
+
+    - name: Set root password
+      ansible.builtin.user:
+        name: root
+        password: "{{ '12345678' | password_hash }}"
 
   post_tasks:
     - name: Shutdown the Raspberry Pi Emulator
