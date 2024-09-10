@@ -1,0 +1,17 @@
+%include "password.liq"
+
+set("log.file",true)
+set("log.file.path", "/home/{{ user_name }}/liquidsoap/bridge.log")
+
+# Define the source as a single track, looped indefinitely
+bluetooth_audio = input.pulseaudio()
+
+# Stream to Icecast
+output.icecast(
+  %opus,
+  host="localhost",
+  port=8000,
+  password=source_password,
+  mount="stream.opus",
+  bluetooth_audio
+)

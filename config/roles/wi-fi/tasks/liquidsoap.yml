@@ -4,3 +4,15 @@
     path: "/home/{{ user_name }}/liquidsoap"
     state: directory
     owner: "{{ user_name }}"
+
+- name: Add the Liquidsoap stream source file
+  ansible.builtin.template:
+    src: templates/bridge.liq.j2
+    dest: "/home/{{ user_name }}/liquidsoap/bridge.liq"
+    owner: "{{ user_name }}"
+
+- name: Add credentials to be used by Liquidsoap
+  ansible.builtin.template:
+    src: templates/password.liq.j2
+    dest: "/home/{{ user_name }}/liquidsoap/password.liq"
+    owner: "{{ user_name }}"
