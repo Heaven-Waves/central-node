@@ -1,0 +1,28 @@
+---
+- name: Create Liquidsoap configuration folder for default user
+  ansible.builtin.file:
+    path: "/home/{{ user_name }}/liquidsoap"
+    state: directory
+    owner: "{{ user_name }}"
+
+- name: Add the Liquidsoap stream source file
+  ansible.builtin.template:
+    src: templates/bridge.liq.j2
+    dest: "/home/{{ user_name }}/liquidsoap/bridge.liq"
+    owner: "{{ user_name }}"
+
+- name: Add credentials to be used by Liquidsoap
+  ansible.builtin.template:
+    src: templates/password.liq.j2
+    dest: "/home/{{ user_name }}/liquidsoap/password.liq"
+    owner: "{{ user_name }}"
+
+- name: Register Liquidsoap bridge service
+  ansible.builtin.template:
+    src: templates/liquidsoap.service.j2
+    dest: /etc/systemd/system/liquidsoap.service
+
+- name: Enable Liquidsoap bridge service at boot
+  ansible.builtin.systemd_service:
+    name: liquidsoap
+    enabled: true

@@ -1,0 +1,8 @@
+---
+- name: Icecast server related configuration
+  ansible.builtin.import_tasks:
+    file: icecast.yml
+
+- name: Liquidsoap related configuration
+  ansible.builtin.import_tasks:
+    file: liquidsoap.yml

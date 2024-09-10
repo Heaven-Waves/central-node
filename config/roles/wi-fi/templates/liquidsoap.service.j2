@@ -1,0 +1,15 @@
+[Unit]
+Description=Liquidsoap Streamer Service
+After=network.target bluetooth-discoverable.service
+
+[Service]
+Environment="PULSE_SERVER=unix:/run/user/1000/pulse/native"
+#Environment="PIPEWIRE_RUNTIME_DIR=/run/user/1000/pipewire"
+Type=forking
+PIDFile=/home/{{ user_name }}/liquidsoap/bridge.pid
+ExecStart=/usr/bin/liquidsoap --debug /home/{{ user_name }}/liquidsoap/bridge.liq
+Restart=always
+User={{ user_name }}
+
+[Install]
+WantedBy=multi-user.target
