@@ -1,2 +1,4 @@
-./wifi.y[a]ml
-./credentials.y[a]ml
+wifi.yml
+wifi.yaml
+credentials.yaml
+credentials.yml
