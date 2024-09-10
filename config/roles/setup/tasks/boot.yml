@@ -1,0 +1,3 @@
+---
+- name: Change default boot mount point
+  ansible.builtin.shell: sed -iE 's|\s/boot\s| /boot/firmware |g' /etc/fstab

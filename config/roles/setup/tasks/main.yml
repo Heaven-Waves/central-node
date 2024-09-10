@@ -2,3 +2,7 @@
 - name: Package installation
   ansible.builtin.import_tasks:
     file: packages.yml
+
+- name: Fixing boot mount mismatch
+  ansible.builtin.import_tasks:
+    file: boot.yml
