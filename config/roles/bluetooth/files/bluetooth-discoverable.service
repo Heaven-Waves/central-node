@@ -1,0 +1,10 @@
+[Unit]
+Description=Make Bluetooth discoverable on boot
+After=bluetooth.target
+
+[Service]
+ExecStart=/bin/bash -c "/usr/bin/bluetoothctl discoverable on && /usr/bin/bt-agent -c NoInputNoOutput"
+KillSignal=SIGINT
+
+[Install]
+WantedBy=multi-user.target

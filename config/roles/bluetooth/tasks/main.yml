@@ -1,2 +1,22 @@
 ---
-# tasks file for bluetooth
+- name: Set default Bluetooth settings to act as speaker
+  ansible.builtin.shell: >
+    sed -i \
+      -e 's/#AutoEnable.*/AutoEnable = true/' \
+      -e 's/#JustWorksRepairing.*/JustWorksRepairing = always/' \
+      -e 's/#FastConnectable.*/FastConnectable = true/' \
+      -e 's/#AlwaysPairable.*/AlwaysPairable = true/' \
+      -e 's/#DiscoverableTimeout.*/DiscoverableTimeout = 0/' \
+      -e 's/#PairableTimeout.*/PairableTimeout = 0/' \
+      {{ bluetooth_config }}
+
+- name: Register Bluetooth discovery service
+  ansible.builtin.copy:
+    src: files/bluetooth-discoverable.service
+    dest: /etc/systemd/system/bluetooth-discoverable.service
+    mode: "644"
+
+- name: Enable Bluetooth discovery service on boot
+  ansible.builtin.systemd_service:
+    name: bluetooth-discoverable
+    enabled: true
