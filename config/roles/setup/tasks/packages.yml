@@ -1,0 +1,36 @@
+---
+- name: Add bullseye-backports repository to sources list in order to install pipewire
+  ansible.builtin.apt_repository:
+    repo: "deb http://deb.debian.org/debian bullseye-backports main contrib non-free"
+    filename: "bullseye-backports"
+    state: present
+
+- name: Install PipeWire and all its dependancies from bullseye-backports
+  ansible.builtin.apt:
+    name:
+      - pipewire
+      - wireplumber
+      - pipewire-pulse
+      - libspa-0.2-bluetooth
+    default_release: "bullseye-backports"
+    state: present
+
+- name: Update apt
+  ansible.builtin.apt:
+    update_cache: true
+    # upgrade:
+
+- name: Prioritize liquidsoap-related packages from Debian respos
+  ansible.builtin.copy:
+    src: files/ffmpeg.pref
+    dest: "{{ apt_preferences_dir }}/ffmpeg.pref"
+    mode: "0600"
+
+- name: Install required packaages
+  ansible.builtin.apt:
+    name:
+      - bluez-tools # bt-agent
+      - icecast2
+      - liquidsoap
+      - vim
+    state: present

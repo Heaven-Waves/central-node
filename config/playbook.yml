@@ -1,0 +1,19 @@
+- name: Creating custom Raspberry Pi OS image
+  hosts: emulated
+  gather_facts: false
+
+  vars_files:
+    - defaults/credentials.yml
+
+  pre_tasks:
+    - name: Waiting the emulator to boot up the virtual pi
+      ansible.builtin.import_tasks:
+        file: tasks/wait.yml
+
+  roles:
+    - setup
+
+  post_tasks:
+    - name: Export the emulated image to *.img format
+      ansible.builtin.include_tasks:
+        file: tasks/export.yml

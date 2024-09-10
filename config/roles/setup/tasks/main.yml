@@ -1,0 +1,16 @@
+---
+- name: Package installation
+  ansible.builtin.import_tasks:
+    file: packages.yml
+
+- name: Fixing boot mount mismatch
+  ansible.builtin.import_tasks:
+    file: boot.yml
+
+- name: Setting up preferences
+  ansible.builtin.import_tasks:
+    file: prefs.yml
+
+- name: User related settings
+  ansible.builtin.import_tasks:
+    file: users.yml

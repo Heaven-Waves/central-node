@@ -1,0 +1,5 @@
+.git/
+dist/
+setup.sh
+README.md
+config/

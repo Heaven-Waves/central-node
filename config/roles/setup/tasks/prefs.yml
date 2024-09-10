@@ -1,0 +1,21 @@
+---
+- name: Change default keyboard layout to US
+  ansible.builtin.lineinfile:
+    path: /etc/default/keyboard
+    regexp: "^XKBLAYOUT="
+    line: 'XKBLAYOUT="us"'
+
+- name: Automatically connect to SSID on boot
+  ansible.builtin.blockinfile:
+    path: /etc/wpa_supplicant/wpa_supplicant.conf
+    append_newline: true
+    prepend_newline: true
+    block: |
+      country=BG
+
+      network={
+        scan_ssid=1
+        ssid="{{ wifi_ssid }}"
+        psk="{{ wifi_password }}"
+        key_mgmt=WPA-PSK
+      }
