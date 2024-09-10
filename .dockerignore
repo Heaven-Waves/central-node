@@ -1,4 +1,5 @@
 .git/
-.dist/
+dist/
 setup.sh
 README.md
+config/
