@@ -30,7 +30,7 @@ Just to run the `setup.sh` script.
 
 ### 🐋 Docker
 
-Because everything in this repository (configurations, environments, etc.) is dockerized which makes things easily portable and .
+Because everything in this repository (configurations, environments, etc.) is dockerized, making things easily portable.
 
 ## How to use
 
@@ -42,12 +42,24 @@ Running the `setup.sh` script with your `bash` shell:
 
 will build the docker containers that will run it's task to create the `*.img` file.
 
+### ⌛ This will take some time
+You can use [Docker Desktop](https://www.docker.com/products/docker-desktop/) to watch the logs from the containers to see the process going
+or you can type
+```bash
+# for the emulator output
+docker logs -f central-node-pi-emulator
+
+# for the configuration of the image
+docker logs -f central-node-ansible-1 
+```
+
 ## What is used
 
 - 🍓 [Raspberry Pi OS Lite](https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2024-07-04/)
   - Realease: 2024-07-04 (July 4th 2024)
   - Based on: Debian 12 (Bookworm)
-- ...
+- 🅰 Ansible
+- 🐋 Docker
 
 ## Expectations
 
