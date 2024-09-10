@@ -12,6 +12,8 @@
 
   roles:
     - setup
+    - bluetooth
+    - wi-fi
 
   post_tasks:
     - name: Export the emulated image to *.img format
