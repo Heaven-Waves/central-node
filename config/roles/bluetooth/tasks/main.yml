@@ -10,3 +10,13 @@
       -e 's/#PairableTimeout.*/PairableTimeout = 0/' \
       {{ bluetooth_config }}
 
+- name: Register Bluetooth discovery service
+  ansible.builtin.copy:
+    src: files/bluetooth-discoverable.service
+    dest: /etc/systemd/system/bluetooth-discoverable.service
+    mode: "644"
+
+- name: Enable Bluetooth discovery service on boot
+  ansible.builtin.systemd_service:
+    name: bluetooth-discoverable
+    enabled: true
