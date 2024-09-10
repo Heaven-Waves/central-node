@@ -1,0 +1,32 @@
+---
+- name: Remove autologin
+  ansible.builtin.shell: sed -i 's/--autologin root //' /etc/systemd/system/serial-getty@ttyAMA0.service.d/override.conf
+
+- name: Remove ssh auto login
+  ansible.builtin.shell:
+    # sed -i 's/PermitRootLogin yes/#PermitRootLogin prohibit-password/' /etc/ssh/sshd_config &&
+    sed -i 's/permitEmptyPasswords yes/#PermitEmptyPasswords no/' /etc/ssh/sshd_config
+
+- name: Enable getty service for /dev/tty1
+  ansible.builtin.systemd:
+    name: getty@tty1.service
+    enabled: true
+
+- name: Enable default /dev/tty1 login prompt
+  ansible.builtin.copy:
+    src: /etc/systemd/system/serial-getty@ttyAMA0.service.d/override.conf
+    dest: /etc/systemd/system/getty@tty1.service.d/override.conf
+    remote_src: true
+
+- name: Create default user
+  ansible.builtin.user:
+    name: "{{ user_name }}"
+    password: "{{ user_password | password_hash }}"
+    groups:
+      - sudo
+    append: true
+
+- name: Set root password
+  ansible.builtin.user:
+    name: root
+    password: "{{ root_password | password_hash }}"

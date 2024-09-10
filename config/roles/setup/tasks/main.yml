@@ -10,3 +10,7 @@
 - name: Setting up preferences
   ansible.builtin.import_tasks:
     file: prefs.yml
+
+- name: User related settings
+  ansible.builtin.import_tasks:
+    file: users.yml
