@@ -10,3 +10,14 @@ Docker and Ansible configuration for the [Raspberry Pi 4B](https://www.raspberry
      width="500"
      >
 </p>
+
+## Dependencies
+Verry simple because the only actually required dependancies are
+
+### 🎮 Bash
+Just to run the `setup.sh` script.
+
+### 🐋 Docker
+Because everything in this repository (configurations, environments, etc.) is dockerized which makes things easily portable and .
+
+## How to use
