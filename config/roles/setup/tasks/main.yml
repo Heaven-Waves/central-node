@@ -1,0 +1,4 @@
+---
+- name: Package installation
+  ansible.builtin.import_tasks:
+    file: packages.yml
