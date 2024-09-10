@@ -1,32 +1,21 @@
-Role Name
-=========
+# Role Name
 
 This role is capable of handling audio coming from user device trough Bluetooth. 📶
 
-Requirements
-------------
+## Requirements
 
+## Role Variables
 
-Role Variables
---------------
-
-
-Dependencies
-------------
+## Dependencies
 
 None.
 
-Example Playbook
-----------------
+## Example Playbook
 
-
-
-License
--------
+## License
 
 BSD
 
-Author Information
-------------------
+## Author Information
 
 Ivo Karaneshev
