@@ -1,2 +1,12 @@
 ---
-# tasks file for bluetooth
+- name: Set default Bluetooth settings to act as speaker
+  ansible.builtin.shell: >
+    sed -i \
+      -e 's/#AutoEnable.*/AutoEnable = true/' \
+      -e 's/#JustWorksRepairing.*/JustWorksRepairing = always/' \
+      -e 's/#FastConnectable.*/FastConnectable = true/' \
+      -e 's/#AlwaysPairable.*/AlwaysPairable = true/' \
+      -e 's/#DiscoverableTimeout.*/DiscoverableTimeout = 0/' \
+      -e 's/#PairableTimeout.*/PairableTimeout = 0/' \
+      {{ bluetooth_config }}
+

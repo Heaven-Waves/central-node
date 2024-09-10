@@ -1,4 +1,3 @@
 ---
 # defaults file for roles/setup
 apt_preferences_dir: /etc/apt/preferences.d/
-bluetooth_config: /etc/bluetooth/main.conf
