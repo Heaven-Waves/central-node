@@ -1,8 +1,17 @@
 # Central Node 📡
-Docker and Ansible configuration for the [Raspberry Pi 4B](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/specifications/) board with 4G RAM as central node. 🍓
 
- ## Raspberry Pi 4 model B
- > You know it well
+### Project that build entire custom Raspberry Pi OS Lite bootable image 💿
+
+This image is intended to be used on [Raspberry Pi 4B](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/specifications/) with 4G RAM 🍓 to turn this machine into central node / server that accepts audio from Bluetooth
+
+> Yes, you read it, you can connect your phone to it
+
+and spread it to multiple [ESP32-LyraT V4.3](https://docs.espressif.com/projects/esp-adf/en/latest/design-guide/dev-boards/get-started-esp32-lyrat.html) [`peripheral-node`s](https://github.com/Heaven-Waves/peripheral-node).
+
+## Raspberry Pi 4 model B
+
+> You know it well
+
 <p align="center">
 <img
      alt="Raspberry Pi 4 model B"
@@ -12,12 +21,15 @@ Docker and Ansible configuration for the [Raspberry Pi 4B](https://www.raspberry
 </p>
 
 ## Dependencies
+
 Verry simple because the only actually required dependancies are
 
 ### 🎮 Bash
+
 Just to run the `setup.sh` script.
 
 ### 🐋 Docker
+
 Because everything in this repository (configurations, environments, etc.) is dockerized which makes things easily portable and .
 
 ## How to use
