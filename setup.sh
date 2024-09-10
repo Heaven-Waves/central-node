@@ -1,5 +1,5 @@
 #!/bin/sh
 
-docker build -t justivo/ansible ./config
+docker build -t justivo/ansible .
 
 docker compose up -d
