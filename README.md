@@ -42,15 +42,43 @@ Running the `setup.sh` script with your `bash` shell:
 
 will build the docker containers that will run it's task to create the `*.img` file.
 
+There are provided default variable for:
+
+- new default user credentials
+- password to `root` user
+- Wi-Fi SSID and password to connect to
+
+Navigating to `config/vars` the default values could be **overriden** by creating files and variables with the same.
+
+Example configuration:
+
+`config/vars/credentials.yml`:
+
+```yml
+user_name: thesis
+user_password: thesis
+
+root_password: very_strong_root_password_here
+```
+
+`config/vars/wifi.yml`:
+
+```yml
+wifi_ssid: My_Router_SSID
+wifi_password: My_Router_Password
+```
+
 ### ⌛ This will take some time
+
 You can use [Docker Desktop](https://www.docker.com/products/docker-desktop/) to watch the logs from the containers to see the process going
 or you can type
+
 ```bash
 # for the emulator output
 docker logs -f central-node-pi-emulator
 
 # for the configuration of the image
-docker logs -f central-node-ansible-1 
+docker logs -f central-node-ansible-1
 ```
 
 ## What is used
