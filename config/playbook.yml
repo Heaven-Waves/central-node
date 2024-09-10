@@ -1,11 +1,11 @@
-- name: Testing
+- name: Creating custom Raspberry Pi OS image
   hosts: emulated
   gather_facts: false
 
   pre_tasks:
-    - name: Wait for machine startup
-      ansible.builtin.wait_for_connection:
-        timeout: 300
+    - name: Waiting the emulator to boot up the virtual pi
+      ansible.builtin.import_tasks:
+        file: tasks/wait.yml
 
   tasks:
     - name: Add bullseye-backports repository to sources list in order to install pipewire
@@ -79,30 +79,6 @@
         password: "{{ '12345678' | password_hash }}"
 
   post_tasks:
-    - name: Shutdown the Raspberry Pi Emulator
-      ignore_unreachable: true
-      ansible.builtin.command: shutdown -h now
-      async: 1
-      poll: 0
-
-    - name: Wait until the Emulator stops
-      ignore_unreachable: true
-      ansible.builtin.pause:
-        seconds: 10
-      # register: unreachable
-      # failed_when: unreachable.rc != 0 and not unreachable.rc == 255
-
-    - name: Install `qemu-img` utility inside ansible container
-      delegate_to: localhost
-      ansible.builtin.apt:
-        update_cache: true
-        name: qemu-utils
-
-    - name: Use `qemu-img` to convert to a bootable disk image
-      delegate_to: localhost
-      ansible.builtin.command: qemu-img convert -f qcow2 -O raw /distro/distro.qcow2 /distro/distro.img
-      register: convert
-
-      retries: 10
-      delay: 1
-      until: convert.rc == 0
+    - name: Export the emulated image to *.img format
+      ansible.builtin.include_tasks:
+        file: tasks/export.yml

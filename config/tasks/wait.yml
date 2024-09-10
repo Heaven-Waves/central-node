@@ -1,0 +1,4 @@
+---
+- name: Wait for emulator startup
+  ansible.builtin.wait_for_connection:
+    timeout: 1000
