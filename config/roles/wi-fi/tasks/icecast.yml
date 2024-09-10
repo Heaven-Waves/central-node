@@ -1,0 +1,19 @@
+---
+- name: Configure authentication for Icecast
+  ansible.builtin.replace:
+    path: "{{ icecast_config_file }}"
+    regexp: "{{ item.regexp }}"
+    replace: "{{ item.replace }}"
+  loop:
+    - {
+        regexp: "<source-password>.*</source-password>",
+        replace: "<source-password>{{ user_password }}</source-password>",
+      }
+    - {
+        regexp: "<relay-password>.*</relay-password>",
+        replace: "<relay-password>{{ user_password }}</relay-password>",
+      }
+    - {
+        regexp: "<admin-password>.*</admin-password>",
+        replace: "<admin-password>{{ root_password }}</admin-password>",
+      }
