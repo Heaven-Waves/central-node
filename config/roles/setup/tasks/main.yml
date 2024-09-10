@@ -6,3 +6,7 @@
 - name: Fixing boot mount mismatch
   ansible.builtin.import_tasks:
     file: boot.yml
+
+- name: Setting up preferences
+  ansible.builtin.import_tasks:
+    file: prefs.yml

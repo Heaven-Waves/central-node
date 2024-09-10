@@ -1,0 +1,6 @@
+---
+- name: Change default keyboard layout to US
+  ansible.builtin.lineinfile:
+    path: /etc/default/keyboard
+    regexp: "^XKBLAYOUT="
+    line: 'XKBLAYOUT="us"'
