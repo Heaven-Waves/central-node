@@ -17,3 +17,8 @@
         regexp: "<admin-password>.*</admin-password>",
         replace: "<admin-password>{{ root_password }}</admin-password>",
       }
+
+- name: Start the Icecast service
+  ansible.builtin.systemd_service:
+    name: icecast2
+    enabled: true
