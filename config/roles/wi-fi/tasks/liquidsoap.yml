@@ -1,0 +1,6 @@
+---
+- name: Create Liquidsoap configuration folder for default user
+  ansible.builtin.file:
+    path: "/home/{{ user_name }}/liquidsoap"
+    state: directory
+    owner: "{{ user_name }}"
