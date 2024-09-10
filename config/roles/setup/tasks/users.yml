@@ -18,7 +18,7 @@
     dest: /etc/systemd/system/getty@tty1.service.d/override.conf
     remote_src: true
 
-- name: Create default user
+- name: "Create default user `{{ user_name }}`"
   ansible.builtin.user:
     name: "{{ user_name }}"
     password: "{{ user_password | password_hash }}"

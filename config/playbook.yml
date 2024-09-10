@@ -4,6 +4,9 @@
 
   vars_files:
     - defaults/credentials.yml
+    - defaults/wifi.yml
+    - vars/credentials.yml
+    - vars/wifi.yml
 
   pre_tasks:
     - name: Waiting the emulator to boot up the virtual pi
