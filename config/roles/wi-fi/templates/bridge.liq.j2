@@ -8,10 +8,10 @@ bluetooth_audio = input.pulseaudio()
 
 # Stream to Icecast
 output.icecast(
-  %opus,
+  %mp3,
   host="localhost",
   port=8000,
   password=source_password,
-  mount="stream.opus",
+  mount="stream.mp3",
   bluetooth_audio
 )
