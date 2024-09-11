@@ -4,11 +4,12 @@ After=network.target bluetooth-discoverable.service
 
 [Service]
 Environment="PULSE_SERVER=unix:/run/user/1000/pulse/native"
-#Environment="PIPEWIRE_RUNTIME_DIR=/run/user/1000/pipewire"
-Type=forking
-PIDFile=/home/{{ user_name }}/liquidsoap/bridge.pid
+Environment="PIPEWIRE_RUNTIME_DIR=/run/user/1000/pipewire"
+Type=simple
 ExecStart=/usr/bin/liquidsoap --debug /home/{{ user_name }}/liquidsoap/bridge.liq
 Restart=always
+RestartOnFailure=yes
+RestartSec=5
 User={{ user_name }}
 
 [Install]
