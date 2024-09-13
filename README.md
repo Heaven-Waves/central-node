@@ -81,13 +81,14 @@ docker logs -f central-node-pi-emulator
 docker logs -f central-node-ansible-1
 ```
 
-## What is used
+## Sofware used
 
 - 🍓 [Raspberry Pi OS Lite](https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2024-07-04/)
   - Realease: 2024-07-04 (July 4th 2024)
   - Based on: Debian 12 (Bookworm)
 - 🅰 Ansible
 - 🐋 Docker
+- 🧼 Liquidsoap - `v2.1.3`
 
 ## Expectations
 
