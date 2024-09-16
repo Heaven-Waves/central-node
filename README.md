@@ -6,7 +6,7 @@ This image is intended to be used on [Raspberry Pi 4B](https://www.raspberrypi.c
 
 > Yes, you read it, you can connect your phone to it
 
-and spread it to multiple [ESP32-LyraT V4.3](https://docs.espressif.com/projects/esp-adf/en/latest/design-guide/dev-boards/get-started-esp32-lyrat.html) [`peripheral-node`s](https://github.com/Heaven-Waves/peripheral-node).
+and spread it to multiple [ESP32-LyraT V4.3](https://docs.espressif.com/projects/esp-adf/en/latest/design-guide/dev-boards/get-started-esp32-lyrat.html) [`peripheral-node`s](https://github.com/Heaven-Waves/peripheral-node) in your local network.
 
 ## Raspberry Pi 4 model B
 
