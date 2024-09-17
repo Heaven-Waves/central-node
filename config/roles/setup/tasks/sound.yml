@@ -1,0 +1,23 @@
+---
+- name: "Enable lingering for `{{ user_name }}`"
+  ansible.builtin.command: "loginctl enable-linger {{ user_name }}"
+
+- name: "Adding `{{ user_name }}` to sound related user groups"
+  ansible.builtin.user:
+    user: "{{ user_name }}"
+    append: true
+    groups:
+      - audio
+      - pipewire
+      - bluetooth
+
+- name: Create global config folder for wireplumber to ovveride stock /etc/ssh/sshd_config
+  ansible.builtin.file:
+    path: "{{ wireplumber_bluetooth_config }}"
+    state: directory
+
+- name: Disable wireplumber's "logind-monitor" to make it run system-wide
+  ansible.builtin.copy:
+    src: files/50-bluez-config.lua
+    dest: "{{ wireplumber_bluetooth_config }}/50-bluez-config.lua"
+    mode: "644"

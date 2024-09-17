@@ -14,3 +14,7 @@
 - name: User related settings
   ansible.builtin.import_tasks:
     file: users.yml
+
+- name: Sound related settings
+  ansible.builtin.import_tasks:
+    file: sound.yml
