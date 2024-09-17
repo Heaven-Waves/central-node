@@ -22,9 +22,13 @@
   ansible.builtin.user:
     name: "{{ user_name }}"
     password: "{{ user_password | password_hash }}"
-    groups:
-      - sudo
     append: true
+
+- name: "Add default user to all default groups"
+  ansible.builtin.replace:
+    path: /etc/group
+    regexp: ":pi"
+    replace: ":thesis"
 
 - name: Set root password
   ansible.builtin.user:
