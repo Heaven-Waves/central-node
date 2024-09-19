@@ -6,16 +6,8 @@
     line: 'XKBLAYOUT="us"'
 
 - name: Automatically connect to SSID on boot
-  ansible.builtin.blockinfile:
-    path: /etc/wpa_supplicant/wpa_supplicant.conf
-    append_newline: true
-    prepend_newline: true
-    block: |
-      country=BG
+  ansible.builtin.template:
+    src: templates/ssid.nmconnection.j2
+    dest: "/etc/NetworkManager/system-connections/{{ wifi_ssid }}.nmconnection"
+    mode: "600"
 
-      network={
-        scan_ssid=1
-        ssid="{{ wifi_ssid }}"
-        psk="{{ wifi_password }}"
-        key_mgmt=WPA-PSK
-      }
