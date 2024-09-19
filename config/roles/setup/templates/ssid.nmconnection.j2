@@ -1,0 +1,30 @@
+[connection]
+id={{ wifi_ssid }}
+uuid={{ wifi_ssid | to_uuid }}
+type=wifi
+interface-name=wlan0
+
+[wifi]
+mode=infrastructure
+ssid={{ wifi_ssid }}
+
+[wifi-security]
+auth-alg=open
+key-mgmt=wpa-psk
+psk={{ wifi_password }}
+
+[ipv4]
+method=auto
+
+[ipv6]
+addr-gen-mode=default
+method=auto
+
+[main]
+plugins=ifupdown,keyfile
+
+[ifupdown]
+managed=false
+
+[device]
+wifi.scan-rand-mac-address=no
