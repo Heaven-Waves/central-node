@@ -24,6 +24,12 @@
     password: "{{ user_password | password_hash }}"
     append: true
 
+- name: "Create folder for user-defined systemd units"
+  ansible.builtin.file:
+    path: "{{ user_home_dir }}/.config/systemd/user"
+    owner: "{{ user_name }}"
+    state: directory
+
 - name: "Add default user to all default groups"
   ansible.builtin.replace:
     path: /etc/group
