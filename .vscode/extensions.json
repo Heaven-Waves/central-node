@@ -1,0 +1,11 @@
+{
+    "recommendations": [
+        "redhat.ansible",
+        "ms-azuretools.vscode-docker",
+        "eamodio.gitlens",
+        "mhutchie.git-graph",
+        "esbenp.prettier-vscode",
+        "redhat.vscode-yaml",
+        "wholroyd.jinja",
+    ]
+}
