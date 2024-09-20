@@ -1,3 +1,9 @@
 ---
 # defaults file for roles/setup
-apt_preferences_dir: /etc/apt/preferences.d/
+apt_preferences_dir: /etc/apt/preferences.d
+
+wireplumber_global_config_path: /etc/wireplumber
+wireplumber_bluetooth_config: "{{ wireplumber_global_config_path }}/bluetooth.lua.d"
+
+user_home_dir: "/home/{{ user_name }}"
+user_services_dir: "{{ user_home_dir }}/.config/systemd/user"
