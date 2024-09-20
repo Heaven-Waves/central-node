@@ -11,13 +11,31 @@
       - pipewire
       - bluetooth
 
-- name: Create global config folder for wireplumber to ovveride stock /etc/ssh/sshd_config
+- name: Create global config folder for WirePlumber to override stock config
   ansible.builtin.file:
-    path: "{{ wireplumber_bluetooth_config }}"
+    path: "{{ item }}"
     state: directory
+  loop:
+    - "{{ wireplumber_bluetooth_config }}"
+    - "{{ wireplumber_global_config_path }}/main.lua.d"
 
-- name: Disable wireplumber's "logind-monitor" to make it run system-wide
+- name: Disable WirePlumber's "logind-monitor" to make it run system-wide
   ansible.builtin.copy:
     src: files/50-bluez-config.lua
     dest: "{{ wireplumber_bluetooth_config }}/50-bluez-config.lua"
     mode: "644"
+
+- name: Disable WirePlumber's "restore-session" key to set volume automatically on boot
+  ansible.builtin.copy:
+    src: files/91-remove-restore-props.lua
+    dest: "{{ wireplumber_global_config_path }}/main.lua.d/91-remove-restore-props.lua"
+    mode: "644"
+
+- name: Register the user service to set volume everytime on boot
+  ansible.builtin.copy:
+    src: files/volume-up.service
+    dest: "{{ user_services_dir }}/volume-up.service"
+    owner: "{{ user_name }}"
+
+- name: Enable the volume up service to run on boot
+  ansible.builtin.command: "systemctl --user -M {{ user_name }}@ enable volume-up.service"

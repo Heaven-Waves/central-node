@@ -1,0 +1,12 @@
+[Unit]
+Description="Set PipeWire initial volume level to 80%"
+Requires=wireplumber.service pipewire.service pipewire-pulse.service
+After=sound.target wireplumber.service pipewire.service pipewire-pulse.service
+
+[Service]
+Type=simple
+ExecStartPre=/bin/sleep 5
+ExecStart=/usr/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 80%
+
+[Install]
+WantedBy=default.target
