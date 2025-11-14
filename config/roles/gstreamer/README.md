@@ -1,6 +1,6 @@
 # Role Name
 
-Configuration that aims to redirect incoming bluetooth stream to Wi-Fi radio 📡
+Configuration that aims to redirect incoming RTP stream to Peripheral nodes using GStreamer 📡
 
 ## Requirements
 

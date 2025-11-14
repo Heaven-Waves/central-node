@@ -1,6 +1,6 @@
 # Role Name
 
-Setup configuration for Raspberry Pi OS image.
+Setup and installation configuration for Raspberry Pi OS image.
 
 ## Requirements
 

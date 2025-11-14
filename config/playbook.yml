@@ -14,8 +14,8 @@
         file: tasks/wait.yml
 
   roles:
-    - setup
-    - wi-fi
+    - installation
+    - gstreamer
 
   post_tasks:
     - name: Export the emulated image to *.img format
