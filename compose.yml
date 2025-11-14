@@ -1,6 +1,6 @@
 services:
   pi-emulator:
-    image: ptrsr/pi-ci
+    image: ptrsr/pi-ci:1.4
     entrypoint: []
     command:
       - bash
@@ -15,6 +15,7 @@ services:
 
   ansible:
     image: justivo/ansible
+    build: .
     command: ansible-playbook playbook.yml
     depends_on:
       - pi-emulator
