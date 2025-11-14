@@ -2,4 +2,4 @@
 dist/
 setup.sh
 README.md
-config/
+ansible/

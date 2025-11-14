@@ -19,7 +19,7 @@ services:
     depends_on:
       - pi-emulator
     volumes:
-      - ./config:/etc/ansible/playbooks/
+      - ./ansible:/etc/ansible/playbooks/
       - ./dist:/distro
 
 networks:
