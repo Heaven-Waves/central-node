@@ -1,0 +1,14 @@
+[Unit]
+Description=GStreamer RTP Stream Multicast Bridge
+Requires=wireplumber.service pipewire.service pipewire-pulse.service
+After=network-online.target sound.target wireplumber.service pipewire.service pipewire-pulse.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/home/{{ user_name }}/gstreamer-rtp-stream.sh
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=default.target
