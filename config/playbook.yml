@@ -15,7 +15,6 @@
 
   roles:
     - setup
-    - bluetooth
     - wi-fi
 
   post_tasks:

@@ -1,3 +1,0 @@
----
-# defaults file for bluetooth
-bluetooth_config: /etc/bluetooth/main.conf
