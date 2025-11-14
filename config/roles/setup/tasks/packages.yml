@@ -12,26 +12,33 @@
       - wireplumber
       - pipewire-pulse
       - pipewire-alsa
-      - libspa-0.2-bluetooth
     default_release: "bullseye-backports"
+    state: present
+
+- name: Install GStreamer and all its dependancies
+  ansible.builtin.apt:
+    name:
+      - libgstreamer1.0-dev
+      - libgstreamer-plugins-base1.0-dev
+      - libgstreamer-plugins-bad1.0-dev
+      - gstreamer1.0-plugins-base
+      - gstreamer1.0-plugins-good
+      - gstreamer1.0-plugins-bad
+      - gstreamer1.0-plugins-ugly
+      - gstreamer1.0-libav
+      - gstreamer1.0-tools
+      - gstreamer1.0-x
+      - gstreamer1.0-alsa
+      - gstreamer1.0-gl
+      - gstreamer1.0-pulseaudio
     state: present
 
 - name: Update apt
   ansible.builtin.apt:
     update_cache: true
-    # upgrade:
 
-- name: Prioritize liquidsoap-related packages from Debian respos
-  ansible.builtin.copy:
-    src: files/ffmpeg.pref
-    dest: "{{ apt_preferences_dir }}/ffmpeg.pref"
-    mode: "0600"
-
-- name: Install required packaages
+- name: Install optional packages
   ansible.builtin.apt:
     name:
-      - bluez-tools # bt-agent
-      - icecast2
-      - liquidsoap
       - vim
     state: present
