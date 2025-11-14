@@ -1,0 +1,15 @@
+---
+- name: Copy GStreamer RTP stream script to user home directory
+  ansible.builtin.copy:
+    src: files/gstreamer-rtp-stream.sh
+    dest: /home/{{ user_name }}/gstreamer-rtp-stream.sh
+    mode: "755"
+
+- name: Register the user service for GStreamer RTP stream
+  ansible.builtin.template:
+    src: templates/gstreamer-rtp-stream.service.j2
+    dest: "{{ user_services_dir }}/gstreamer-rtp-stream.service"
+    owner: "{{ user_name }}"
+
+- name: Enable the GStreamer RTP stream service to run on boot
+  ansible.builtin.command: "systemctl --user -M {{ user_name }}@ enable gstreamer-rtp-stream.service"

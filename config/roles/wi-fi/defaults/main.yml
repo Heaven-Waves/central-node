@@ -1,3 +1,1 @@
 ---
-# defaults file for config/roles/wi-fi
-icecast_config_file: /etc/icecast2/icecast.xml

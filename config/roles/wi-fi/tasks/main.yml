@@ -1,8 +1,4 @@
 ---
-- name: Icecast server related configuration
+- name: GStreamer RTP stream related configuration
   ansible.builtin.import_tasks:
-    file: icecast.yml
-
-- name: Liquidsoap related configuration
-  ansible.builtin.import_tasks:
-    file: liquidsoap.yml
+    file: gstreamer-rtp-stream.yml
