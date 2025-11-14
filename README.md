@@ -2,11 +2,11 @@
 
 ### Project that build entire custom Raspberry Pi OS Lite bootable image 💿
 
-This image is intended to be used on [Raspberry Pi 4B](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/specifications/) with 4G RAM 🍓 to turn this machine into central node / server that accepts audio from Bluetooth
+This image is intended to be used on [Raspberry Pi 4B](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/specifications/) with 4G RAM 🍓 to turn this machine into a central node / server that accepts audio from Bluetooth
 
 > Yes, you read it, you can connect your phone to it
 
-and spread it to multiple [ESP32-LyraT V4.3](https://docs.espressif.com/projects/esp-adf/en/latest/design-guide/dev-boards/get-started-esp32-lyrat.html) [`peripheral-node`s](https://github.com/Heaven-Waves/peripheral-node) in your local network.
+and streams it via RTP multicast to multiple [ESP32-LyraT V4.3](https://docs.espressif.com/projects/esp-adf/en/latest/design-guide/dev-boards/get-started-esp32-lyrat.html) [`peripheral-node`s](https://github.com/Heaven-Waves/peripheral-node) in your local network.
 
 ## Raspberry Pi 4 model B
 
@@ -22,11 +22,7 @@ and spread it to multiple [ESP32-LyraT V4.3](https://docs.espressif.com/projects
 
 ## Dependencies
 
-Verry simple because the only actually required dependancies are
-
-### 🎮 Bash
-
-Just to run the `setup.sh` script.
+Verry simple because the only actually required dependancy is
 
 ### 🐋 Docker
 
@@ -34,10 +30,10 @@ Because everything in this repository (configurations, environments, etc.) is do
 
 ## How to use
 
-Running the `setup.sh` script with your `bash` shell:
+Running this command within your `bash` shell:
 
 ```bash
-./setup.sh
+docker compose up
 ```
 
 will build the docker containers that will run it's task to create the `*.img` file.
@@ -75,20 +71,22 @@ or you can type
 
 ```bash
 # for the emulator output
-docker logs -f central-node-pi-emulator
+docker logs -f central-node-pi-emulator-1
 
 # for the configuration of the image
 docker logs -f central-node-ansible-1
 ```
 
-## Sofware used
+## Software used
 
 - 🍓 [Raspberry Pi OS Lite](https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2024-07-04/)
-  - Realease: 2024-07-04 (July 4th 2024)
+  - Release: 2024-07-04 (July 4th 2024)
   - Based on: Debian 12 (Bookworm)
 - 🅰 Ansible
 - 🐋 Docker
-- 🧼 Liquidsoap - `v2.1.3`
+- 🎵 PipeWire - Audio/video server (from Debian Bullseye backports)
+- 🔊 WirePlumber - Session/policy manager for PipeWire
+- 🎬 GStreamer - Multimedia framework for RTP streaming
 
 ## Expectations
 
