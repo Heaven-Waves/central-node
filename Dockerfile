@@ -25,3 +25,8 @@ ENV ANSIBLE_GATHERING=smart \
     EDITOR=vim
 
 WORKDIR /etc/ansible/playbooks
+
+VOLUME ./ansible /etc/ansible/playbooks
+VOLUME ./dist /distro
+
+CMD ["ansible-playbook", "playbook.yml"]

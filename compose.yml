@@ -1,6 +1,14 @@
 services:
   pi-emulator:
-    image: ptrsr/pi-ci:1.4
+    image: justivo/pi-emulator:trixie
+    build:
+      context: ./pi-emulator
+      args:
+        KERNEL_BRANCH: rpi-6.12.y
+        # As the folder name and the archived img file are different, 
+        # i.e. DISTRO_FILE differs from DISTRO_IMG
+        DISTRO_FILE: 2025-10-01-raspios-trixie-arm64-lite.img
+        DISTRO_IMG: https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2025-10-02/2025-10-01-raspios-trixie-arm64-lite.img.xz
     entrypoint: []
     command:
       - bash
@@ -14,13 +22,12 @@ services:
       - ./dist:/dist
 
   ansible:
-    image: justivo/ansible
+    image: justivo/ansible:latest
     build: .
-    command: ansible-playbook playbook.yml
     depends_on:
       - pi-emulator
     volumes:
-      - ./ansible:/etc/ansible/playbooks/
+      - ./ansible:/etc/ansible/playbooks
       - ./dist:/distro
 
 networks:
