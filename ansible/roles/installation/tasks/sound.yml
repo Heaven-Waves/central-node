@@ -10,11 +10,10 @@
       - audio
       - pipewire
 
-- name: Disable WirePlumber's "logind-monitor" to make it run system-wide
-  ansible.builtin.copy:
-    src: files/50-bluez-config.lua
-    dest: "{{ wireplumber_bluetooth_config }}/50-bluez-config.lua"
-    mode: "644"
+- name: "Ensure wireplumber global configuration folder exists"
+  ansible.builtin.file:
+    path: "{{ wireplumber_global_config_path }}/main.lua.d"
+    state: directory
 
 - name: Disable WirePlumber's "restore-session" key to set volume automatically on boot
   ansible.builtin.copy:
