@@ -9,13 +9,13 @@
 
 - name: Enable getty service for /dev/tty1
   ansible.builtin.systemd:
-    name: getty@tty1.service
+    name: getty@.service
     enabled: true
 
 - name: Enable default /dev/tty1 login prompt
   ansible.builtin.copy:
-    src: /etc/systemd/system/serial-getty@ttyAMA0.service.d/override.conf
-    dest: /etc/systemd/system/getty@tty1.service.d/override.conf
+    src: /etc/systemd/system/serial-getty@ttyAMA0.service.d/
+    dest: /etc/systemd/system/getty@tty1.service.d
     remote_src: true
 
 - name: "Create default user `{{ user_name }}`"
