@@ -1,0 +1,3 @@
+[submodule "pi-emulator"]
+	path = pi-emulator
+	url = git@github.com:ptrsr/pi-ci.git
